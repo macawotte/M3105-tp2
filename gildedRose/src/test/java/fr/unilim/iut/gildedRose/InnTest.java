@@ -13,7 +13,7 @@ public class InnTest {
 	Inn inn = new Inn();
 	
 	@Test
-	public void shouldReturnList() {
+	public void should_Return_List() {
 		assertThat(inn.getItems()).extracting("name").containsExactly("+5 Dexterity Vest",
 				"Aged Brie",
 				"Elixir of the Mongoose",
@@ -27,78 +27,55 @@ public class InnTest {
 	}
 	
 	
-	/*
 	@Test
-	public void getQualityNotAgedBrieOrBackstageAndQualitySupTo0() {
-		Item Item = inn.getItems().get(0);
+	public void should_Update_Quality() {
 		inn.updateQuality();
-		assertEquals(Item.getQuality(),19);
+		assertThat(inn.getItems()).extracting("name").containsExactly("+5 Dexterity Vest",
+				"Aged Brie",
+				"Elixir of the Mongoose",
+				"Sulfuras, Hand of Ragnaros", 
+				"Backstage passes to a TAFKAL80ETC concert" ,
+				"Conjured Mana Cake" 
+				);
+		
+		assertThat(inn.getItems()).extracting("sellIn").containsExactly(9,1,4,0,14,2);
+		assertThat(inn.getItems()).extracting("quality").containsExactly(19,1,6,80,21,5);
 	}
 	
 	@Test
-	public void getQualityNotAgedBrieOrBackstageAndQualityInfTo0() {
-		Item Item = inn.getItems().get(3);
+	public void should_Update_Quality_Twice() {
 		inn.updateQuality();
-		assertEquals(Item.getQuality(),80);
+		inn.updateQuality();
+		assertThat(inn.getItems()).extracting("name").containsExactly("+5 Dexterity Vest",
+				"Aged Brie",
+				"Elixir of the Mongoose",
+				"Sulfuras, Hand of Ragnaros", 
+				"Backstage passes to a TAFKAL80ETC concert" ,
+				"Conjured Mana Cake" 
+				);
+		
+		assertThat(inn.getItems()).extracting("sellIn").containsExactly(8,0,3,0,13,1);
+		assertThat(inn.getItems()).extracting("quality").containsExactly(18,2,5,80,22,4);
 	}
 	
 	@Test
-	public void getQualityAgedBrieQulatyInfTo50() {
-		Item Item = inn.getItems().get(1);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),1);
+	public void should_Update_Quality_100() {
+		for(int i = 0;i<100;i++) {
+			inn.updateQuality();
+		}
+		
+		assertThat(inn.getItems()).extracting("name").containsExactly("+5 Dexterity Vest",
+				"Aged Brie",
+				"Elixir of the Mongoose",
+				"Sulfuras, Hand of Ragnaros", 
+				"Backstage passes to a TAFKAL80ETC concert" ,
+				"Conjured Mana Cake" 
+				);
+		
+		assertThat(inn.getItems()).extracting("sellIn").containsExactly(-90,-98,-95,0,-85,-97);
+		assertThat(inn.getItems()).extracting("quality").containsExactly(0,50,0,80,0,0);
 	}
 	
-	@Test
-	public void getQualityBackstageSellInninfTo11QulatyInfTo50() {
-		Item Item = inn.getItems().get(4);
-		Item.setSellIn(10);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),22);
-	}
-	
-	@Test
-	public void getQualityBackstageSellInninfTo6QulatyInfTo50() {
-		Item Item = inn.getItems().get(4);
-		Item.setSellIn(5);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),23);
-	}
-	
-	@Test
-	public void getQualityBackstageSellInnSupTo11QulatyInfTo50() {
-		Item Item = inn.getItems().get(4);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),21);
-	}
-	
-	
-	@Test
-	public void getQualityBackstageSellInninfTo11QulatySupTo50() {
-		Item Item = inn.getItems().get(4);
-		Item.setSellIn(10);
-		Item.setQuality(60);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),60);
-	}
-	
-	@Test
-	public void getQualityBackstageSellInninfTo6QulatySupTo50() {
-		Item Item = inn.getItems().get(4);
-		Item.setSellIn(5);
-		Item.setQuality(60);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),60);
-	}
-	
-	@Test
-	public void getQualityBackstageSellInnSupTo11QulatySupTo50() {
-		Item Item = inn.getItems().get(4);
-		Item.setQuality(60);
-		inn.updateQuality();
-		assertEquals(Item.getQuality(),60);
-	}
-	*/
 	
 	
 	
